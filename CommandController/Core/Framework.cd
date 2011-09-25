@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CommandController.Core.Argument&lt;T&gt;">
+    <Position X="11.25" Y="0.75" Width="1.5" />
+    <Members>
+      <Field Name="_description" Hidden="true" />
+      <Field Name="_exclusive" Hidden="true" />
+      <Field Name="_friendlyName" Hidden="true" />
+      <Field Name="_id" Hidden="true" />
+      <Field Name="_required" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAACCAAAAAEgAAAEAABAABAACAEAAAAAAQAwAAAAAAA=</HashCode>
+      <FileName>Core\Argument.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CommandController.Core.ArgumentExclusivityException">
+    <Position X="5.75" Y="13.25" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Core\ArgumentExclusivityException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CommandController.Core.ArgumentNotDefinedException">
+    <Position X="1.5" Y="13.25" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Core\ArgumentNotDefinedException.cs</FileName>
+      <NewMemberFileName>Framework\ArgumentRequirementException.cs</NewMemberFileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CommandController.Core.ArgumentViolationException">
+    <Position X="5.5" Y="11" Width="3.5" />
+    <Members>
+      <Field Name="_violatedArgument" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAEAAAAAAQAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Core\ArgumentViolationException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CommandController.Core.FlagArgument">
+    <Position X="9.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Core\FlagArgument.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CommandController.Core.IntegerArgument">
+    <Position X="13" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Core\IntegerArgument.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CommandController.Core.InvalidOperationArgumentException">
+    <Position X="10" Y="13.25" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Core\InvalidOperationArgumentException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CommandController.Core.Operation">
+    <Position X="3.75" Y="0.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAACAAAAAAAAAAARAAAAAAAAEAMYAAAAAAAAAI=</HashCode>
+      <FileName>Core\Operation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CommandController.Core.OperationController">
+    <Position X="1" Y="4.75" Width="2.5" />
+    <Members>
+      <Field Name="_argumentValueCache" Hidden="true" />
+      <Field Name="_operations" Hidden="true" />
+      <Field Name="_operationsDict" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAIEAACCEAAAAAAAAAAQAAACAAQgAgAAIIAEAQAAAAA=</HashCode>
+      <FileName>Core\OperationController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CommandController.Core.StringArgument">
+    <Position X="11.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Core\StringArgument.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="CommandController.Core.IArgument">
+    <Position X="5.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACCAAAAAEgAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>Core\IArgument.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CommandController.Core.IFrontEndController">
+    <Position X="1.5" Y="2.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Core\IFrontEndController.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CommandController.Core.ITypedArgument&lt;T&gt;">
+    <Position X="3.75" Y="4.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAgAAAAAAA=</HashCode>
+      <FileName>Core\ITypedArgument.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CommandController.Core.IValueProvider">
+    <Position X="1.5" Y="0.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>Core\IValueProvider.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
