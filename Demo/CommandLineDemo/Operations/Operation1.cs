@@ -6,18 +6,9 @@ using CommandController.Core;
 
 namespace CommandLineDemo.Operations
 {
+    [OperationDefinition("op1", "Test operation 1", Visible=true)]
     class Operation1 : Operation
     {
-        public override string OperationId
-        {
-            get { return "op1"; }
-        }
-
-        public override string UsageDescription
-        {
-            get { return "Test operation 1"; }
-        }
-
         // A constructor is entirely optional, but is useful if you want to assign
         // setup and teardown event handlers.
         public Operation1()
@@ -35,23 +26,23 @@ namespace CommandLineDemo.Operations
 
         #region Arguments
 
-        [OperationArgument]
-        IntegerArgument argument_int1 = new IntegerArgument("int1", "Integer 1", "A mandatory integer argument", true, false);
+        [OperationArgument("int1", "Integer 1", "A mandatory integer argument", Mandatory = true)]
+        int argument_int1 = 0;
 
-        [OperationArgument]
-        IntegerArgument argument_int2 = new IntegerArgument("int2", "Integer 2", "An optional integer argument", false, false);
+        [OperationArgument("int2", "Integer 2", "An optional integer argument")]
+        int argument_int2 = 0;
 
-        [OperationArgument]
-        StringArgument argument_string1 = new StringArgument("str1", "String 1", "An optional string argument", false, false);
+        [OperationArgument("str1", "String 1", "An optional string argument")]
+        string argument_string1 = string.Empty;
 
-        [OperationArgument]
-        FlagArgument argument_flag1 = new FlagArgument("flag1", "Flag 1", "An exclusive flag argument.", true);
+        [OperationArgument("flag1", "Flag 1", "An exclusive flag argument.", Exclusive = true)]
+        bool argument_flag1 = false;
 
         #endregion
 
         public override int Run()
         {
-            if (argument_flag1.Value)
+            if (argument_flag1)
             {
                 Console.WriteLine("The exclusive argument: Flag 1 was set.");
             }
@@ -59,9 +50,9 @@ namespace CommandLineDemo.Operations
             {
                 Console.WriteLine("The exclusive argument: Flag 1 was not set.");
 
-                Console.WriteLine("Integer argument 1: {0}", argument_int1.Value);
-                Console.WriteLine("Integer argument 2: {0}", argument_int2.Value);
-                Console.WriteLine("String argument 1: {0}", argument_int2.Value);
+                Console.WriteLine("Integer argument 1: {0}", argument_int1);
+                Console.WriteLine("Integer argument 2: {0}", argument_int2);
+                Console.WriteLine("String argument 1: {0}", argument_string1);
             }
 
             return 0;

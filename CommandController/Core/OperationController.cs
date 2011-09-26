@@ -107,6 +107,9 @@ namespace CommandController.Core
                 ValidateArgumentsByExclusivity(op.Arguments);
                 ValidateArgumentsByRequirement(op.Arguments);
 
+                // Now set the argument field values on the Operation instance.
+                SetOperationArgumentFieldValues(op);
+                
                 op.DoSetup();
 
                 try
@@ -164,13 +167,28 @@ namespace CommandController.Core
             {
                 IArgument[] requiredArgsNotSet = (
                     from arg in arguments
-                    where (arg.Required && !ArgumentIsSet(arg))
+                    where (arg.Mandatory && !ArgumentIsSet(arg))
                     select arg)
                     .ToArray<IArgument>();
 
                 if (requiredArgsNotSet.Length > 0)
                 {
                     throw new ArgumentRequirementException(requiredArgsNotSet[0]);
+                }
+            }
+        }
+
+        private static void SetOperationArgumentFieldValues(Operation operation)
+        {
+            foreach (FieldInfo fi in operation.GetType().GetFields(BindingFlags.NonPublic | BindingFlags.Instance))
+            {
+                foreach (object attr in fi.GetCustomAttributes(true))
+                {
+                    if (attr is OperationArgumentAttribute)
+                    {
+                        OperationArgumentAttribute argumentAttribute = (OperationArgumentAttribute)attr;
+                        fi.SetValue(operation, _argumentValueCache[argumentAttribute.Id]);
+                    }
                 }
             }
         }

@@ -24,7 +24,20 @@ namespace CommandController.Core
         /// Gets a string used to identify the operation. This is used to execute an operation when running on the command line.
         /// </summary>
         /// <value>The operation ID.</value>
-		public abstract string OperationId { get; }
+        public string OperationId
+        {
+            get
+            {
+                string value = OperationDefinition.OperationId;
+
+                if (string.IsNullOrEmpty(value))
+                {
+                    throw new InvalidOperationException(string.Format("Operation {0} has a null or empty operation ID.", GetType().Name));
+                }
+
+                return value;
+            }
+        }
 
         /// <summary>
         /// Gets the operation's arguments.
@@ -47,18 +60,45 @@ namespace CommandController.Core
                         {
                             if (attr is OperationArgumentAttribute)
                             {
+                                OperationArgumentAttribute argumentAttribute = (OperationArgumentAttribute)attr;
                                 object fieldValue = fi.GetValue(this);
-                                if (fieldValue != null)
+                                Type fieldType = fi.FieldType;
+
+                                IArgument argumentObj;
+                                if (fieldType == typeof(string))
                                 {
-                                    if (fieldValue is IArgument)
-                                    {
-                                        argsList.Add((IArgument)fieldValue);
-                                    }
-                                    else
-                                    {
-                                        throw new InvalidOperationException(String.Format("Field: {0} is not an IArgument.", fi.Name));
-                                    }
+                                    argumentObj = new StringArgument(
+                                        argumentAttribute.Id,
+                                        argumentAttribute.FriendlyName,
+                                        argumentAttribute.Description,
+                                        argumentAttribute.Mandatory,
+                                        argumentAttribute.Exclusive);
                                 }
+                                else if (fieldType == typeof(int))
+                                {
+                                    argumentObj = new IntegerArgument(
+                                        argumentAttribute.Id,
+                                        argumentAttribute.FriendlyName,
+                                        argumentAttribute.Description,
+                                        argumentAttribute.Mandatory,
+                                        argumentAttribute.Exclusive);
+                                }
+                                else if (fieldType == typeof(bool))
+                                {
+                                    argumentObj = new FlagArgument(
+                                        argumentAttribute.Id,
+                                        argumentAttribute.FriendlyName,
+                                        argumentAttribute.Description,
+                                        argumentAttribute.Exclusive);
+                                }
+                                else
+                                {
+                                    throw new InvalidOperationException(
+                                        String.Format("Field: {0} cannot be used as an argument as it is neither an " +
+                                        "integer, string, or boolean field.", fi.Name));
+                                }
+
+                                argsList.Add((IArgument)argumentObj);
                             }
                         }
                     }
@@ -73,7 +113,13 @@ namespace CommandController.Core
         /// Gets a string describing the usage of the operation.
         /// </summary>
         /// <value>The description string.</value>
-		public abstract string UsageDescription { get; }
+        public string UsageDescription
+        {
+            get
+            {
+                return OperationDefinition.UsageDescription;
+            }
+        }
 
         /// <summary>
         /// Gets a value indicating whether this <see cref="Operation"/> is visible.
@@ -86,9 +132,34 @@ namespace CommandController.Core
         {
             get
             {
-                return true;
+                return OperationDefinition.Visible;
             }
         }
+
+        private OperationDefinitionAttribute OperationDefinition
+        {
+            get
+            {
+                if (_operationDefinition == null)
+                {
+                    foreach (object attr in GetType().GetCustomAttributes(false))
+                    {
+                        if (_operationDefinition != null && (attr is OperationDefinitionAttribute))
+                        {
+                            throw new InvalidOperationException("An operation should only have one OperationDefinitionAttribute. " +
+                                "This has more than one.");
+                        }
+
+                        if (attr is OperationDefinitionAttribute)
+                        {
+                            _operationDefinition = (OperationDefinitionAttribute)attr;
+                        }
+                    }
+                }
+                return _operationDefinition;
+            }
+        }
+        private OperationDefinitionAttribute _operationDefinition;
 
         /// <summary>
         /// Invokes any handlers that have been assigned to the <see cref="Setup"/> event.

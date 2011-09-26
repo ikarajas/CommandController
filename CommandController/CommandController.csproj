@@ -60,6 +60,7 @@
     <Compile Include="Core\IValueProvider.cs" />
     <Compile Include="Core\Operation.cs" />
     <Compile Include="Core\OperationController.cs" />
+    <Compile Include="Core\OperationDefinitionAttribute.cs" />
     <Compile Include="Core\StringArgument.cs" />
     <Compile Include="Core\ValueProvider.cs" />
     <Compile Include="FrontEnds\CommandLine\CommandLineController.cs" />

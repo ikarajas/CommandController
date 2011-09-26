@@ -85,7 +85,7 @@ namespace CommandController.Core
         /// Additionally, the presence of a required argument will not be enforced if an
         /// <see cref="Exclusive"/> argument has been set to <c>true</c>.
         /// </remarks>
-        public bool Required
+        public bool Mandatory
         {
             get { return _required; }
         }
@@ -100,7 +100,7 @@ namespace CommandController.Core
         /// 	<c>true</c> if the argument is exclusive; otherwise, <c>false</c>.
         /// </value>
         /// <remarks>
-        /// This can never be <c>true</c> while <see cref="Required"/> is also <c>true</c>.
+        /// This can never be <c>true</c> while <see cref="Mandatory"/> is also <c>true</c>.
         /// </remarks>
         public bool Exclusive
         {

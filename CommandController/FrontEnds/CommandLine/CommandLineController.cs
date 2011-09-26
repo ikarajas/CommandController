@@ -202,7 +202,7 @@ Getting help:
                 return String.Empty;
             }
 
-            if (!argument.Required)
+            if (!argument.Mandatory)
             {
                 retval = "[" + retval + "]";
             }

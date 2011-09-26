@@ -37,7 +37,7 @@ namespace CommandController.Core
         /// <see cref="Exclusive"/> argument has been set to <c>true</c>.
         /// </remarks>
         /// <value><c>true</c> if the argument is required; otherwise, <c>false</c>.</value>
-        bool Required { get; }
+        bool Mandatory { get; }
 
         /// <summary>
         /// Gets a value indicating whether this <see cref="IArgument"/> can be used in conjunction
@@ -45,7 +45,7 @@ namespace CommandController.Core
         /// flag the error and prevent the given operation from running.
         /// </summary>
         /// <remarks>
-        /// This can never be <c>true</c> while <see cref="Required"/> is also <c>true</c>.
+        /// This can never be <c>true</c> while <see cref="Mandatory"/> is also <c>true</c>.
         /// </remarks>
         /// <value><c>true</c> if the argument is exclusive; otherwise, <c>false</c>.</value>
         bool Exclusive { get; }
