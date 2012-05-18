@@ -1,9 +1,9 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommandController", "CommandController\CommandController.csproj", "{09379E0F-BD83-452D-8C58-766C33D84EB4}"
-EndProject
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Demo", "Demo", "{A239991F-4A57-4ECB-9029-17935F422F9E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommandController", "CommandController\CommandController.csproj", "{09379E0F-BD83-452D-8C58-766C33D84EB4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommandLineDemo", "Demo\CommandLineDemo\CommandLineDemo.csproj", "{B62C3DA1-BE01-4F13-8C98-8205B26F323D}"
 EndProject
